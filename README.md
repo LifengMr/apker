@@ -2,7 +2,7 @@ apker is a plugin framework
 
 step:
 host:
-1、import apker
+1、import apker \n
 2、ProGuard keep class "com.ss.android.apker.helper.IntentBuild"
 
 plugin:
