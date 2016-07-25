@@ -30,7 +30,7 @@ notice:<br>
 
 
 TODO:<br>
-1、optimize gradle pack code(filter code which is same with host)<br>
+1、rewrite gradle pack code with groovy(filter code which is same with host)<br>
 2、support plugin proguard<br>
 3、filter device which is not support plugin（control online）<br>
 
