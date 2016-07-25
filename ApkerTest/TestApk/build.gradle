@@ -1,0 +1,81 @@
+apply plugin: 'com.android.application'
+apply plugin: 'ss.apkerbuild'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+}
+
+
+
+task copyClasses(type: Copy) {
+    def namespacePath = PLUGIN_NAMESPACE.replaceAll("\\.","/")
+    from "build/intermediates/classes/release/${namespacePath}/"
+    into "build/intermediates/dex/${namespacePath}/"
+
+//    def remExt = { name -> name.lastIndexOf('.').with {it != -1 ? name[0..<it] : name} }
+//    eachFile {details ->
+//        def thisFile = new File("${projectDir}/src/main/java/${namespacePath}/", remExt(details.name)+".java")
+//        if (!(thisFile.exists())) {
+//            details.exclude()
+//        }
+//    }
+}
+
+task assembleExternalJar << {
+    ext.androidSdkDir = System.env.ANDROID_HOME
+    if(androidSdkDir == null) {
+        Properties localProps = new Properties()
+        localProps.load(new FileInputStream(file('local.properties')))
+        ext.androidSdkDir = localProps['sdk.dir']
+    }
+    new File("${buildDir}/intermediates/dex/${PLUGIN_NAMESPACE}.jar").delete();
+//    copyJarToDx.execute()
+    String cmdExt = Os.isFamily(Os.FAMILY_WINDOWS) ? '.bat' : ''
+    exec {
+        commandLine "${androidSdkDir}/build-tools/${BUILD_TOOLS_VERSION}/dx${cmdExt}", '--dex',
+                "--output=${buildDir}/outputs/${PLUGIN_NAMESPACE}.jar",
+                "${buildDir}/intermediates/dex/"
+    }
+}
+
+task copyJarToDx(type: Copy) {
+    from ("build/intermediates/exploded-aar/${project.rootProject.name}/") {
+        include '**/*.jar'
+    }
+    from('libs/')
+    into 'build/intermediates/dex/'
+}
+
+task zipApk(type: Zip) {
+    destinationDir file("${buildDir}/outputs/plugin")
+    archiveName 'TestApk.apk'
+    from (zipTree('build/outputs/apk/TestApk-debug.apk')){
+        exclude '**/*.dex'
+    }
+    from (zipTree("build/outputs/${PLUGIN_NAMESPACE}.jar")){
+        include 'classes.dex'
+    }
+}
+
+copyClasses.dependsOn(assemble)
+assembleExternalJar.dependsOn(copyClasses)
+zipApk.dependsOn(assembleExternalJar)

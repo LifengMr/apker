@@ -1,0 +1,5 @@
+include ':app', ':apker'
+//include ':LetvSportGameClient', ':apkerbuild'
+//include ':TestApk', ':apker'
+//include ':apkerbuild', ':TestApk'
+//include ':LetvSportGameClient'

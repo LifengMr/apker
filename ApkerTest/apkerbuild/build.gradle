@@ -1,0 +1,27 @@
+apply plugin: 'groovy'
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.tools.build:gradle:2.0.0'
+    compile 'org.javassist:javassist:3.18.2-GA'
+}
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+apply plugin: 'maven'
+
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: uri('../repo'))
+        pom.groupId = PROJ_GROUP
+        pom.artifactId = PROJ_ARTIFACTID
+        pom.version = PROJ_VERSION
+    }
+}
+
+task cleanRepo(type: Delete) {
+    delete uri('../repo')
+}

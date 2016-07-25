@@ -1,0 +1,20 @@
+apply plugin: 'maven'
+
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            url uri('repo')
+        }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.0.0'
+        classpath 'com.ss.android.apker.build:apkerbuid:1.2.7'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}

@@ -1,0 +1,36 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.ss.android.apker">
+
+    <!--预申请插件权限-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+
+    <application>
+
+        <!-- Stub Activities -->
+        <!-- 1 standard mode -->
+        <activity android:name=".X" android:launchMode="standard"/>
+        <activity android:name=".X1" android:theme="@android:style/Theme.Translucent"/>
+        <!-- 4 singleTask mode -->
+        <activity android:name=".X10" android:launchMode="singleTask"/>
+        <activity android:name=".X11" android:launchMode="singleTask"/>
+        <activity android:name=".X12" android:launchMode="singleTask"/>
+        <activity android:name=".X13" android:launchMode="singleTask"/>
+        <!-- 4 singleTop mode -->
+        <activity android:name=".X20" android:launchMode="singleTop"/>
+        <activity android:name=".X21" android:launchMode="singleTop"/>
+        <activity android:name=".X22" android:launchMode="singleTop"/>
+        <activity android:name=".X23" android:launchMode="singleTop"/>
+        <!-- 4 singleInstance mode -->
+        <activity android:name=".X30" android:launchMode="singleInstance"/>
+        <activity android:name=".X31" android:launchMode="singleInstance"/>
+        <activity android:name=".X32" android:launchMode="singleInstance"/>
+        <activity android:name=".X33" android:launchMode="singleInstance"/>
+
+        <service android:name=".download.DownLoadService" />
+
+    </application>
+
+</manifest>

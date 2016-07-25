@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="PluginTheme" parent="android:Theme.Light.NoTitleBar" >
+        <item name="android:windowBackground">@drawable/bg_plugin</item>
+    </style>
+
+    <style name="PluginThemeDialog" parent="android:Theme.Dialog" >
+        <item name="android:windowBackground">@drawable/bg_plugin</item>
+    </style>
+</resources>
