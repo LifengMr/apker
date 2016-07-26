@@ -38,7 +38,7 @@ public class DownloadButton extends Button implements DownLoadListener {
             return;
         }
         float percent = 1.0f * downLoadInfo.downloadSize / downLoadInfo.fileSize;
-        String text = getContext().getString(R.string.download_ing) + "(" + percent * 100 + "%)";
+        String text = getContext().getString(R.string.download_ing) + "(" + (int)(percent * 100) + "%)";
         setText(text);
     }
 

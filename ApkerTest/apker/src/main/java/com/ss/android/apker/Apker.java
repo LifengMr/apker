@@ -37,19 +37,19 @@ public class Apker {
     private final ArrayMap<String, LoadedApk> mPackages = new ArrayMap<>();
     private Context mHostContext;
     private PluginDAO mPluginDAO;
-    private static Apker sApkLoader;
+    private static Apker sApker;
 
     private Apker() {}
 
     public static Apker ins() {
-        if (sApkLoader == null) {
+        if (sApker == null) {
             synchronized (Apker.class) {
-                if (sApkLoader == null) {
-                    sApkLoader = new Apker();
+                if (sApker == null) {
+                    sApker = new Apker();
                 }
             }
         }
-        return sApkLoader;
+        return sApker;
     }
 
     @SuppressLint("NewApi")

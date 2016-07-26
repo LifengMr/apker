@@ -6,6 +6,7 @@ import android.content.res.AssetManager;
 import android.content.res.Resources;
 
 import com.ss.android.apker.Apker;
+import com.ss.android.apker.R;
 import com.ss.android.apker.entity.ApkResources;
 import com.ss.android.apker.helper.JLog;
 
@@ -41,8 +42,9 @@ public class ApkContextImp extends ContextWrapper {
         mResources = ApkResources.getResourceByCl(mClassLoader, mBase);
         Resources.Theme theme = getResources().newTheme();
         theme.setTo(Apker.ins().host().getTheme());
-        //TODO applayStyle
+        //TODO applyStyle
         mTheme = theme;
+        mTheme.applyStyle(R.style.PluginTheme, true);
     }
 
     @Override
