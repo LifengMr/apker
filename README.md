@@ -23,18 +23,6 @@ feature:<br>
 9、and so on<br>
 
 
-
-notice:<br>
-1、if plugin use the same lib with host, the lib's version should be same with host too<br>
-
-
-
-TODO:<br>
-1、rewrite gradle pack code with groovy(filter code which is same with host)<br>
-2、support plugin proguard<br>
-3、filter device which is not support plugin（control online）<br>
-
-
 WIKI:<br>
 has no time recently, but I will add later.
 
